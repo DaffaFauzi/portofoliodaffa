@@ -5,10 +5,29 @@ export default {
 		extend: {
 			backdropBlur: {
 				sm: '4px',
-			  },
-			
-			
-		  },
+			},
+			animation: {
+				'float': 'float 6s ease-in-out infinite',
+				'blink': 'blink 1s step-end infinite',
+				'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'spin-slower': 'spin 12s linear infinite',
+				'fade-in': 'fadeIn 0.5s ease-out forwards',
+			},
+			keyframes: {
+				float: {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-12px)' },
+				},
+				blink: {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0' },
+				},
+				fadeIn: {
+					from: { opacity: '0', transform: 'translateY(16px)' },
+					to: { opacity: '1', transform: 'translateY(0)' },
+				},
+			},
 		},
+	},
 	plugins: [],
 }

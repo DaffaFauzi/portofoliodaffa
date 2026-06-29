@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 
 const Navbar = () => {
+    const { language, toggleLanguage } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("Home");
     
     const navItems = [
-        { href: "#Home", label: "Home" },
-        { href: "#About", label: "About" },
-        { href: "#Portofolio", label: "Portofolio" },
-        { href: "#Contact", label: "Contact" },
+        { href: "#Home", label: language === 'en' ? "Home" : "Beranda" },
+        { href: "#About", label: language === 'en' ? "About" : "Tentang" },
+        { href: "#Portofolio", label: language === 'en' ? "Portofolio" : "Portofolio" },
+        { href: "#Contact", label: language === 'en' ? "Contact" : "Kontak" },
     ];
 
     useEffect(() => {
@@ -77,19 +79,11 @@ const Navbar = () => {
         >
             <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
                 <div className="flex items-center justify-between h-16">
-                    {/* Logo */}
-                    <div className="flex-shrink-0">
-                        <a
-                            href="#Home"
-                            onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-xl font-bold bg-gradient-to-r from-[#a855f7] to-[#6366f1] bg-clip-text text-transparent"
-                        >
-                            Ekizr
-                        </a>
-                    </div>
+                    {/* Logo placeholder — name shown in hero */}
+                    <div className="flex-shrink-0" />
         
                     {/* Desktop Navigation */}
-                    <div className="hidden md:block">
+                    <div className="hidden md:flex items-center">
                         <div className="ml-8 flex items-center space-x-8">
                             {navItems.map((item) => (
                                 <a
@@ -117,10 +111,26 @@ const Navbar = () => {
                                 </a>
                             ))}
                         </div>
+                        
+                        {/* Language Switcher */}
+                        <button
+                            onClick={toggleLanguage}
+                            className="ml-8 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#e2d3fd] hover:text-white hover:bg-white/10 transition-all duration-300"
+                        >
+                            <Globe className="w-4 h-4" />
+                            <span className="text-xs font-medium uppercase">{language}</span>
+                        </button>
                     </div>
         
-                    {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    {/* Mobile Menu Button & Language Switcher */}
+                    <div className="md:hidden flex items-center gap-4">
+                        <button
+                            onClick={toggleLanguage}
+                            className="flex items-center gap-2 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[#e2d3fd]"
+                        >
+                            <Globe className="w-4 h-4" />
+                            <span className="text-xs font-medium uppercase">{language}</span>
+                        </button>
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
