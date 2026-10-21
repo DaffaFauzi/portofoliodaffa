@@ -7,9 +7,9 @@ import { profileData } from "../constants/profileData"
 
 const SectionHeader = memo(({ label, title, subtitle }) => (
   <div className="text-center lg:mb-12 mb-6 px-[5%]">
-    <p className="text-[#6366f1] text-xs uppercase tracking-widest mb-3 font-medium">{label}</p>
+    <p className="text-[#6366f1] text-xs uppercase tracking-widest mb-3 font-semibold">{label}</p>
     <h2
-      className="text-4xl md:text-5xl font-bold text-white"
+      className="text-4xl md:text-5xl font-bold text-white tracking-tight"
       data-aos="fade-up"
       data-aos-duration="600"
     >
@@ -17,7 +17,7 @@ const SectionHeader = memo(({ label, title, subtitle }) => (
     </h2>
     {subtitle && (
       <p
-        className="mt-3 text-gray-600 max-w-xl mx-auto text-sm"
+        className="mt-3 text-gray-200 max-w-xl mx-auto text-sm sm:text-base font-normal leading-relaxed"
         data-aos="fade-up"
         data-aos-duration="700"
       >
@@ -27,16 +27,16 @@ const SectionHeader = memo(({ label, title, subtitle }) => (
   </div>
 ));
 
-const ProfileImage = memo(() => (
+const ProfileImage = memo(({ language }) => (
   <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
     <div className="relative group" data-aos="fade-left" data-aos-duration="900">
       {/* Single subtle ambient glow */}
-      <div className="absolute -inset-4 opacity-[0.18] z-0 hidden sm:block">
+      <div className="absolute -inset-4 opacity-[0.25] z-0 hidden sm:block">
         <div className="absolute inset-0 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-full blur-2xl animate-pulse-slow" />
       </div>
 
       <div className="relative">
-        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden border border-white/10 group-hover:border-white/20 transition-all duration-500 shadow-2xl shadow-black/50">
+        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden border border-white/20 group-hover:border-indigo-400/50 transition-all duration-500 shadow-2xl shadow-black/60">
           <img
             src="/fotodaffa.png"
             alt="Daffa Fauzi"
@@ -45,9 +45,11 @@ const ProfileImage = memo(() => (
           />
         </div>
         {/* Status dot */}
-        <div className="absolute bottom-4 right-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#0D0D20]/90 border border-white/[0.08]">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-[10px] text-gray-400 font-medium">Available</span>
+        <div className="absolute bottom-4 right-4 flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0D0D20]/95 border border-emerald-500/30 shadow-lg">
+          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-xs text-emerald-300 font-semibold tracking-wide">
+            {language === 'en' ? "Available for Work" : "Siap Bekerja"}
+          </span>
         </div>
       </div>
     </div>
@@ -56,18 +58,18 @@ const ProfileImage = memo(() => (
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
   <div data-aos={animation} data-aos-duration="900" className="group">
-    <div className="bg-[#0D0D20] rounded-xl p-6 border border-white/[0.06] transition-all duration-300 hover:border-[#6366f1]/25 hover:-translate-y-0.5 h-full flex flex-col justify-between">
+    <div className="bg-[#0D0D20] rounded-xl p-6 border border-white/10 transition-all duration-300 hover:border-indigo-500/40 hover:-translate-y-1 h-full flex flex-col justify-between shadow-lg">
       <div className="flex items-center justify-between mb-5">
-        <div className={`w-11 h-11 rounded-lg flex items-center justify-center ${color} bg-opacity-10 group-hover:bg-opacity-15 transition-all`}>
-          <Icon className="w-5 h-5 text-indigo-400" />
+        <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color} bg-opacity-20 border border-white/10 group-hover:bg-opacity-30 transition-all`}>
+          <Icon className="w-6 h-6 text-indigo-300" />
         </div>
-        <span className="text-3xl font-bold text-white">{value}</span>
+        <span className="text-3xl font-bold text-white tracking-tight">{value}</span>
       </div>
       <div>
-        <p className="text-xs uppercase tracking-wider text-gray-600 mb-1">{label}</p>
+        <p className="text-xs uppercase tracking-wider text-indigo-300 font-semibold mb-1">{label}</p>
         <div className="flex items-center justify-between">
-          <p className="text-xs text-gray-700">{description}</p>
-          <ArrowUpRight className="w-3.5 h-3.5 text-gray-700 group-hover:text-indigo-400 transition-colors" />
+          <p className="text-xs text-gray-300 font-light">{description}</p>
+          <ArrowUpRight className="w-4 h-4 text-indigo-400 group-hover:text-white transition-colors" />
         </div>
       </div>
     </div>
@@ -82,13 +84,7 @@ const AboutPage = () => {
     const projectsCount = data.projects.length;
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
 
-    const startDate = new Date("2025-10-01");
-    const today = new Date();
-    const diffTime = Math.abs(today - startDate);
-    const diffMonths = Math.ceil(diffTime / (1000 * 60 * 60 * 24 * 30));
-    const experienceText = diffMonths >= 12
-      ? `${Math.floor(diffMonths / 12)}+ ${language === 'en' ? 'Years' : 'Tahun'}`
-      : `${diffMonths} ${language === 'en' ? 'Months' : 'Bulan'}`;
+    const experienceText = language === 'en' ? '1.5+ Years' : '1.5+ Tahun';
 
     return {
       totalProjects: projectsCount,
@@ -170,7 +166,7 @@ const AboutPage = () => {
             </h2>
 
             <p
-              className="text-base sm:text-lg text-gray-500 leading-relaxed text-justify font-light"
+              className="text-base sm:text-lg text-gray-200 leading-relaxed text-justify font-normal"
               data-aos="fade-right"
               data-aos-duration="1000"
             >
@@ -178,7 +174,7 @@ const AboutPage = () => {
             </p>
 
             <p
-              className="text-base sm:text-lg text-gray-500 leading-relaxed text-justify font-light"
+              className="text-base sm:text-lg text-gray-200 leading-relaxed text-justify font-normal"
               data-aos="fade-right"
               data-aos-duration="1100"
             >
@@ -187,12 +183,14 @@ const AboutPage = () => {
 
             {/* Quote */}
             <div
-              className="border-l-2 border-[#6366f1]/35 pl-4 py-1"
+              className="border-l-2 border-[#6366f1] pl-4 py-1"
               data-aos="fade-up"
               data-aos-duration="900"
             >
-              <blockquote className="text-gray-500 italic text-sm leading-relaxed">
-                &ldquo;Building high-quality digital solutions with modern web technologies.&rdquo;
+              <blockquote className="text-indigo-200 italic text-sm sm:text-base leading-relaxed">
+                &ldquo;{language === 'en'
+                  ? "Building high-quality digital solutions with modern web technologies."
+                  : "Membangun solusi digital berkualitas tinggi dengan teknologi web modern."}&rdquo;
               </blockquote>
             </div>
 
@@ -202,17 +200,17 @@ const AboutPage = () => {
                 <button
                   data-aos="fade-up"
                   data-aos-duration="900"
-                  className="flex items-center justify-center gap-2 px-7 py-3 w-full lg:w-auto rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-sm font-medium transition-all duration-300 hover:opacity-90 hover:shadow-lg hover:shadow-indigo-500/20 active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 px-7 py-3 w-full lg:w-auto rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-sm font-semibold transition-all duration-300 hover:opacity-95 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-[0.98]"
                 >
                   <UserCheck className="w-4 h-4" />
-                  <span>{language === 'en' ? "View Projects" : "Lihat Proyek"}</span>
+                  <span>{language === 'en' ? "View Projects" : "Lihat Portofolio"}</span>
                 </button>
               </a>
               <a href="#Contact" className="w-full lg:w-auto">
                 <button
                   data-aos="fade-up"
                   data-aos-duration="1000"
-                  className="flex items-center justify-center gap-2 px-7 py-3 w-full lg:w-auto rounded-lg border border-white/10 text-gray-400 text-sm font-medium transition-all duration-200 hover:border-white/20 hover:text-gray-100 hover:bg-white/[0.04] active:scale-[0.98]"
+                  className="flex items-center justify-center gap-2 px-7 py-3 w-full lg:w-auto rounded-lg border border-white/20 text-gray-200 text-sm font-medium transition-all duration-200 hover:border-indigo-400 hover:text-white hover:bg-white/[0.08] active:scale-[0.98]"
                 >
                   <Globe className="w-4 h-4" />
                   <span>{language === 'en' ? "Contact Me" : "Hubungi Saya"}</span>
@@ -221,7 +219,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <ProfileImage />
+          <ProfileImage language={language} />
         </div>
 
         {/* Stats */}

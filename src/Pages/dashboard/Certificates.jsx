@@ -5,7 +5,7 @@ import { Award, Upload, Trash2, ImageIcon, Plus } from 'lucide-react'
 const Card = ({ children, className = '' }) => (
   <div className={`relative group ${className}`}>
     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-10 group-hover:opacity-25 transition duration-500" />
-    <div className="relative bg-white/5 backdrop-blur-xl border border-white/12 rounded-2xl h-full">
+    <div className="relative bg-white/5 backdrop-blur-xl border border-white/15 rounded-2xl h-full shadow-lg">
       {children}
     </div>
   </div>
@@ -14,7 +14,7 @@ const Card = ({ children, className = '' }) => (
 const SkeletonCard = () => (
   <div className="relative">
     <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-10" />
-    <div className="relative bg-white/5 border border-white/12 rounded-2xl overflow-hidden">
+    <div className="relative bg-white/5 border border-white/15 rounded-2xl overflow-hidden">
       <div className="w-full aspect-[16/11.5] bg-white/5 animate-pulse" />
     </div>
   </div>
@@ -26,8 +26,7 @@ const CertCard = ({ cert, onDelete }) => {
   return (
     <div className="relative group">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-2xl blur opacity-10 group-hover:opacity-30 transition duration-500" />
-      <div className="relative bg-white/5 border border-white/12 rounded-2xl overflow-hidden">
-        {/* Skeleton shown until image loads */}
+      <div className="relative bg-white/5 border border-white/15 rounded-2xl overflow-hidden shadow-md">
         {!imgLoaded && (
           <div className="w-full aspect-[16/11.5] bg-white/5 animate-pulse" />
         )}
@@ -41,7 +40,7 @@ const CertCard = ({ cert, onDelete }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
             <button
               onClick={() => onDelete(cert.id)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/20 border border-red-500/30 text-red-300 text-xs w-full justify-center hover:bg-red-500/30 transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-red-500/25 border border-red-500/40 text-red-200 text-xs w-full justify-center hover:bg-red-500/40 transition-colors font-medium"
             >
               <Trash2 className="w-3 h-3" /> Delete
             </button>
@@ -103,8 +102,8 @@ export default function Certificates() {
           </div>
         </div>
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-white">Certificates</h1>
-          <p className="text-gray-500 text-xs">
+          <h1 className="text-xl sm:text-2xl font-bold text-white tracking-tight">Certificates</h1>
+          <p className="text-indigo-200 text-xs font-medium">
             {loading ? 'Loading...' : `${certs.length} certificates total`}
           </p>
         </div>
@@ -122,18 +121,18 @@ export default function Certificates() {
             onDragLeave={() => setDragOver(false)}
             onDrop={e => { e.preventDefault(); setDragOver(false); handleFile(e.dataTransfer.files[0]) }}
             className={`flex flex-col items-center justify-center w-full min-h-[160px] rounded-xl border-2 border-dashed cursor-pointer transition-all duration-300 ${
-              dragOver ? 'border-indigo-400/60 bg-indigo-500/10' : 'border-white/12 bg-white/4 hover:border-indigo-500/35 hover:bg-white/7'
+              dragOver ? 'border-indigo-400/60 bg-indigo-500/10' : 'border-white/15 bg-white/5 hover:border-indigo-400/50 hover:bg-white/8'
             }`}
           >
             {preview ? (
               <img src={preview} alt="preview" className="max-h-40 object-contain rounded-lg p-2" />
             ) : (
               <div className="text-center space-y-2 p-6">
-                <div className="w-11 h-11 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto">
-                  <ImageIcon className="w-5 h-5 text-indigo-400" />
+                <div className="w-11 h-11 rounded-full bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center mx-auto">
+                  <ImageIcon className="w-5 h-5 text-indigo-300" />
                 </div>
-                <p className="text-sm text-gray-300">Drag & drop or click to upload</p>
-                <p className="text-xs text-gray-600">PNG, JPG, WEBP supported</p>
+                <p className="text-sm text-gray-200 font-medium">Drag & drop or click to upload</p>
+                <p className="text-xs text-gray-300">PNG, JPG, WEBP supported</p>
               </div>
             )}
             <input type="file" accept="image/*" onChange={e => handleFile(e.target.files[0])} className="hidden" />
@@ -141,17 +140,17 @@ export default function Certificates() {
 
           {file && (
             <div className="flex items-center justify-between gap-3 flex-wrap">
-              <p className="text-xs text-gray-400 truncate flex-1">{file.name}</p>
+              <p className="text-xs text-gray-200 truncate flex-1 font-medium">{file.name}</p>
               <div className="flex gap-2 shrink-0">
                 <button onClick={() => { setFile(null); setPreview(null) }}
-                  className="px-3 py-1.5 rounded-xl border border-white/10 text-gray-500 hover:text-white text-xs transition-colors">
+                  className="px-3 py-1.5 rounded-xl border border-white/20 text-gray-300 hover:text-white text-xs transition-colors font-medium">
                   Clear
                 </button>
                 <button onClick={uploadImage} disabled={uploading} className="relative group/u">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-60 blur group-hover/u:opacity-100 transition duration-300" />
-                  <div className="relative flex items-center gap-2 px-4 py-1.5 bg-[#030014] rounded-xl border border-white/10">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-[#4f52c9] to-[#8644c5] rounded-xl opacity-70 blur group-hover/u:opacity-100 transition duration-300" />
+                  <div className="relative flex items-center gap-2 px-4 py-1.5 bg-[#030014] rounded-xl border border-white/15">
                     {uploading ? <div className="w-3.5 h-3.5 border-2 border-white/20 border-t-white rounded-full animate-spin" /> : <Upload className="w-3.5 h-3.5 text-indigo-400" />}
-                    <span className="text-xs text-gray-200">{uploading ? 'Uploading...' : 'Upload'}</span>
+                    <span className="text-xs text-gray-200 font-medium">{uploading ? 'Uploading...' : 'Upload'}</span>
                   </div>
                 </button>
               </div>
@@ -170,8 +169,8 @@ export default function Certificates() {
       ) : certs.length === 0 ? (
         <Card>
           <div className="p-16 text-center">
-            <Award className="w-10 h-10 text-gray-700 mx-auto mb-3" />
-            <p className="text-gray-500 text-sm">No certificates yet.</p>
+            <Award className="w-10 h-10 text-indigo-300/40 mx-auto mb-3" />
+            <p className="text-gray-200 text-sm font-medium">No certificates yet.</p>
           </div>
         </Card>
       ) : (

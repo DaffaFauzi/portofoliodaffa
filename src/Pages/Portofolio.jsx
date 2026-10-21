@@ -12,6 +12,7 @@ import TechStackIcon from "../components/TechStackIcon";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Certificate from "../components/Certificate";
+import ProjectDetailModal from "../components/ProjectDetailModal";
 import { Code, Award, Boxes, ChevronDown, ChevronUp } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { profileData } from "../constants/profileData";
@@ -19,7 +20,7 @@ import { profileData } from "../constants/profileData";
 const ToggleButton = ({ onClick, isShowingMore, language }) => (
   <button
     onClick={onClick}
-    className="flex items-center gap-2 px-5 py-2 text-gray-500 hover:text-gray-200 text-sm font-medium transition-all duration-200 border border-white/[0.07] hover:border-white/15 rounded-lg hover:bg-white/[0.04]"
+    className="flex items-center gap-2 px-6 py-2.5 text-white hover:text-indigo-200 text-sm font-semibold transition-all duration-200 border border-white/20 hover:border-indigo-400 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] shadow-md"
   >
     <span>
       {isShowingMore
@@ -97,6 +98,7 @@ export default function FullWidthTabs() {
   const [certificates, setCertificates] = useState([]);
   const [showAllProjects, setShowAllProjects] = useState(false);
   const [showAllCertificates, setShowAllCertificates] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
   const isMobile = window.innerWidth < 768;
   const initialItems = isMobile ? 4 : 6;
 
@@ -123,7 +125,7 @@ export default function FullWidthTabs() {
         <h2 className="text-3xl md:text-5xl font-bold text-white">
           {language === 'en' ? "Portfolio Showcase" : "Showcase Portofolio"}
         </h2>
-        <p className="text-gray-600 max-w-2xl mx-auto text-sm mt-3">
+        <p className="text-gray-200 max-w-2xl mx-auto text-sm sm:text-base mt-3 font-normal">
           {language === 'en'
             ? "Explore my journey through projects, certifications, and technical expertise."
             : "Jelajahi perjalanan saya melalui proyek, sertifikasi, dan keahlian teknis."}
@@ -137,10 +139,11 @@ export default function FullWidthTabs() {
           elevation={0}
           sx={{
             bgcolor: "transparent",
-            border: "1px solid rgba(255, 255, 255, 0.06)",
-            borderRadius: "12px",
+            border: "1px solid rgba(255, 255, 255, 0.15)",
+            borderRadius: "14px",
             overflow: "hidden",
-            background: "rgba(13, 13, 32, 0.8)",
+            background: "rgba(13, 13, 32, 0.95)",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.5)",
           }}
           className="md:px-4"
         >
@@ -153,19 +156,20 @@ export default function FullWidthTabs() {
             sx={{
               minHeight: "60px",
               "& .MuiTab-root": {
-                fontSize: { xs: "0.7rem", sm: "0.85rem" },
-                fontWeight: "500",
+                fontSize: { xs: "0.75rem", sm: "0.9rem" },
+                fontWeight: "600",
                 textTransform: "none",
                 letterSpacing: "0.3px",
                 transition: "all 0.3s ease",
-                color: "rgba(255, 255, 255, 0.35)",
+                color: "rgba(255, 255, 255, 0.8)",
                 zIndex: 1,
                 "&:hover": {
-                  color: "rgba(255, 255, 255, 0.65)",
-                  backgroundColor: "rgba(255, 255, 255, 0.03)",
+                  color: "#ffffff",
+                  backgroundColor: "rgba(255, 255, 255, 0.08)",
                 },
                 "&.Mui-selected": {
-                  color: "rgba(255, 255, 255, 0.9)",
+                  color: "#ffffff",
+                  fontWeight: "700",
                 },
               },
               "& .MuiTabs-indicator": {
@@ -205,11 +209,13 @@ export default function FullWidthTabs() {
                 {displayedProjects.map((project, index) => (
                   <CardProject
                     key={project.id || index}
+                    project={project}
                     Img={project.image}
                     Title={project.title}
-                    Description={project.description}
+                    Description={project.shortDescription || project.description}
                     Link={project.link || "#"}
                     id={project.id}
+                    onOpenDetail={(p) => setSelectedProject(p)}
                   />
                 ))}
               </div>
@@ -235,7 +241,7 @@ export default function FullWidthTabs() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 text-gray-700 text-sm">
+                <div className="text-center py-16 text-gray-300 text-sm font-medium">
                   {language === 'en' ? "Certificates will be added soon." : "Sertifikat akan segera ditambahkan."}
                 </div>
               )}
@@ -263,6 +269,13 @@ export default function FullWidthTabs() {
           </TabPanel>
         </SwipeableViews>
       </Box>
+
+      {/* Project Detail Popup Modal */}
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={!!selectedProject}
+        onClose={() => setSelectedProject(null)}
+      />
     </div>
   );
 }

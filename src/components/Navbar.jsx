@@ -11,7 +11,8 @@ const Navbar = () => {
     const navItems = [
         { href: "#Home", label: language === 'en' ? "Home" : "Beranda" },
         { href: "#About", label: language === 'en' ? "About" : "Tentang" },
-        { href: "#Portofolio", label: language === 'en' ? "Portofolio" : "Portofolio" },
+        { href: "#Experience", label: language === 'en' ? "Experience" : "Pengalaman" },
+        { href: "#Portofolio", label: language === 'en' ? "Portfolio" : "Portofolio" },
         { href: "#Contact", label: language === 'en' ? "Contact" : "Kontak" },
     ];
 
@@ -112,24 +113,50 @@ const Navbar = () => {
                             ))}
                         </div>
                         
-                        {/* Language Switcher */}
+                        {/* Language Switcher Pill */}
                         <button
                             onClick={toggleLanguage}
-                            className="ml-8 flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#e2d3fd] hover:text-white hover:bg-white/10 transition-all duration-300"
+                            title={language === 'id' ? "Ganti ke Bahasa Inggris (Switch to English)" : "Ganti ke Bahasa Indonesia (Switch to Indonesian)"}
+                            className="ml-8 flex items-center p-1 rounded-full bg-[#0D0D24] border border-white/20 shadow-md transition-all duration-300 hover:border-indigo-400 cursor-pointer"
                         >
-                            <Globe className="w-4 h-4" />
-                            <span className="text-xs font-medium uppercase">{language}</span>
+                            <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold transition-all ${
+                                language === 'id' 
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white shadow-sm' 
+                                    : 'text-gray-300 hover:text-white'
+                            }`}>
+                                ID
+                            </span>
+                            <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold transition-all ${
+                                language === 'en' 
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white shadow-sm' 
+                                    : 'text-gray-300 hover:text-white'
+                            }`}>
+                                EN
+                            </span>
                         </button>
                     </div>
         
                     {/* Mobile Menu Button & Language Switcher */}
-                    <div className="md:hidden flex items-center gap-4">
+                    <div className="md:hidden flex items-center gap-3">
                         <button
                             onClick={toggleLanguage}
-                            className="flex items-center gap-2 px-2 py-1 rounded-lg bg-white/5 border border-white/10 text-[#e2d3fd]"
+                            title={language === 'id' ? "Switch to English" : "Ganti ke Bahasa Indonesia"}
+                            className="flex items-center p-0.5 rounded-full bg-[#0D0D24] border border-white/20 shadow-md"
                         >
-                            <Globe className="w-4 h-4" />
-                            <span className="text-xs font-medium uppercase">{language}</span>
+                            <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                                language === 'id' 
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white' 
+                                    : 'text-gray-300'
+                            }`}>
+                                ID
+                            </span>
+                            <span className={`px-2 py-0.5 rounded-full text-[11px] font-bold ${
+                                language === 'en' 
+                                    ? 'bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white' 
+                                    : 'text-gray-300'
+                            }`}>
+                                EN
+                            </span>
                         </button>
                         <button
                             onClick={() => setIsOpen(!isOpen)}

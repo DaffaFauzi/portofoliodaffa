@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b172a" />
+      <stop offset="50%" stop-color="#122442" />
+      <stop offset="100%" stop-color="#070e1c" />
+    </linearGradient>
+    <linearGradient id="blueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="glow5" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="35" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgGrad5)" />
+  <circle cx="680" cy="90" r="150" fill="#3b82f6" opacity="0.15" filter="url(#glow5)" />
+  <circle cx="120" cy="380" r="140" fill="#6366f1" opacity="0.12" filter="url(#glow5)" />
+
+  <g stroke="#ffffff" stroke-opacity="0.03" stroke-width="1">
+    <line x1="0" y1="90" x2="800" y2="90" />
+    <line x1="0" y1="180" x2="800" y2="180" />
+    <line x1="0" y1="270" x2="800" y2="270" />
+    <line x1="0" y1="360" x2="800" y2="360" />
+    <line x1="160" y1="0" x2="160" y2="450" />
+    <line x1="320" y1="0" x2="320" y2="450" />
+    <line x1="480" y1="0" x2="480" y2="450" />
+    <line x1="640" y1="0" x2="640" y2="450" />
+  </g>
+
+  <!-- POS Web App Mockup -->
+  <g transform="translate(150, 45)">
+    <rect width="500" height="360" rx="16" fill="#0f1f38" stroke="#3b82f6" stroke-opacity="0.25" stroke-width="1.5" />
+
+    <!-- Top Bar -->
+    <rect width="500" height="50" rx="16" fill="#172e54" />
+    <rect y="35" width="500" height="15" fill="#172e54" />
+    <circle cx="30" cy="25" r="5" fill="#ef4444" />
+    <circle cx="48" cy="25" r="5" fill="#f59e0b" />
+    <circle cx="66" cy="25" r="5" fill="#10b981" />
+    <text x="250" y="30" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="12" font-weight="700" text-anchor="middle">🛒 POS KASIR UMKM JAYA BERKAH</text>
+
+    <!-- Content: Left Products Grid, Right Cart & Bill -->
+    <g transform="translate(25, 75)">
+      <!-- Left side: Products -->
+      <text x="0" y="15" fill="#ffffff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">Daftar Produk Kasir</text>
+      
+      <!-- Product Item 1 -->
+      <g transform="translate(0, 30)">
+        <rect width="135" height="90" rx="8" fill="#16294a" stroke="#ffffff" stroke-opacity="0.08" />
+        <rect width="135" height="40" rx="8" fill="#1e3a6a" />
+        <text x="15" y="25" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Beras Premium 5kg</text>
+        <text x="15" y="58" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Rp 68.000</text>
+        <rect x="15" y="65" width="45" height="16" rx="4" fill="#3b82f6" fill-opacity="0.2" />
+        <text x="37" y="77" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Stok: 45</text>
+      </g>
+
+      <!-- Product Item 2 -->
+      <g transform="translate(145, 30)">
+        <rect width="135" height="90" rx="8" fill="#16294a" stroke="#ffffff" stroke-opacity="0.08" />
+        <rect width="135" height="40" rx="8" fill="#1e3a6a" />
+        <text x="15" y="25" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Minyak Goreng 2L</text>
+        <text x="15" y="58" fill="#ffffff" font-family="system-ui, sans-serif" font-size="13" font-weight="700">Rp 34.000</text>
+        <rect x="15" y="65" width="45" height="16" rx="4" fill="#3b82f6" fill-opacity="0.2" />
+        <text x="37" y="77" fill="#60a5fa" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Stok: 82</text>
+      </g>
+
+      <!-- Sales Stats Strip -->
+      <g transform="translate(0, 135)">
+        <rect width="280" height="75" rx="10" fill="#12223e" stroke="#3b82f6" stroke-opacity="0.2" />
+        <text x="15" y="25" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="11">Total Transaksi Hari Ini</text>
+        <text x="15" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="800">Rp 3.420.000</text>
+        <text x="175" y="55" fill="#34d399" font-family="system-ui, sans-serif" font-size="11">52 Nota ✓</text>
+      </g>
+
+      <!-- Right side: Cart & Receipt -->
+      <g transform="translate(300, 0)">
+        <rect width="150" height="210" rx="10" fill="#142646" stroke="#3b82f6" stroke-opacity="0.3" />
+        <text x="15" y="25" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="12" font-weight="700">🧾 Struk Transaksi</text>
+        <line x1="15" y1="36" x2="135" y2="36" stroke="#ffffff" stroke-opacity="0.1" />
+
+        <text x="15" y="55" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Beras 5kg x 1</text>
+        <text x="135" y="55" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10" text-anchor="end">68.000</text>
+
+        <text x="15" y="75" fill="#e2e8f0" font-family="system-ui, sans-serif" font-size="10">Minyak 2L x 2</text>
+        <text x="135" y="75" fill="#ffffff" font-family="system-ui, sans-serif" font-size="10" text-anchor="end">68.000</text>
+
+        <line x1="15" y1="90" x2="135" y2="90" stroke="#ffffff" stroke-opacity="0.1" stroke-dasharray="3,3" />
+        <text x="15" y="110" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="11" font-weight="700">Total Tagihan:</text>
+        <text x="15" y="130" fill="#ffffff" font-family="system-ui, sans-serif" font-size="15" font-weight="800">Rp 136.000</text>
+
+        <!-- Button Cetak PDF Struk -->
+        <rect x="15" y="150" width="120" height="34" rx="6" fill="url(#blueGrad)" />
+        <text x="75" y="172" fill="#ffffff" font-family="system-ui, sans-serif" font-size="11" font-weight="700" text-anchor="middle">📄 Cetak PDF Struk</text>
+      </g>
+    </g>
+
+    <!-- Bottom link footer -->
+    <g transform="translate(25, 315)">
+      <circle cx="8" cy="10" r="4" fill="#3b82f6" />
+      <text x="20" y="14" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="11">github.com/DaffaFauzi/web-kasir-umkm-jaya-berkah</text>
+      <text x="320" y="14" fill="#64748b" font-family="system-ui, sans-serif" font-size="11">Laravel • Blade • MySQL • DomPDF</text>
+    </g>
+  </g>
+</svg>

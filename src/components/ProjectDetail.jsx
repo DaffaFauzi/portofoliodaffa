@@ -50,7 +50,7 @@ const ProjectStats = ({ project, language }) => {
   const featuresCount = project?.features?.length || 0;
 
   return (
-    <div className="grid grid-cols-2 gap-3 md:gap-4 p-3 md:p-4 bg-[#0a0a1a] rounded-xl overflow-hidden relative">
+    <div className="grid grid-cols-2 gap-3 md:gap-4 p-3 md:p-4 bg-[#0a0a1a] rounded-xl overflow-hidden relative border border-white/10">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 to-purple-900/20 opacity-50 blur-2xl z-0" />
       <div className="relative z-10 flex items-center space-x-2 md:space-x-3 bg-white/5 p-2 md:p-3 rounded-lg border border-blue-500/20 transition-all duration-300 hover:scale-105 hover:border-blue-500/50 hover:shadow-lg">
         <div className="bg-blue-500/20 p-1.5 md:p-2 rounded-full">
@@ -60,10 +60,10 @@ const ProjectStats = ({ project, language }) => {
           />
         </div>
         <div className="flex-grow">
-          <div className="text-lg md:text-xl font-semibold text-blue-200">
+          <div className="text-lg md:text-xl font-bold text-blue-200">
             {techStackCount}
           </div>
-          <div className="text-[10px] md:text-xs text-gray-400">
+          <div className="text-[11px] md:text-xs text-indigo-200 font-medium">
             {language === 'en' ? 'Total Technologies' : 'Total Teknologi'}
           </div>
         </div>
@@ -77,10 +77,10 @@ const ProjectStats = ({ project, language }) => {
           />
         </div>
         <div className="flex-grow">
-          <div className="text-lg md:text-xl font-semibold text-purple-200">
+          <div className="text-lg md:text-xl font-bold text-purple-200">
             {featuresCount || 'N/A'}
           </div>
-          <div className="text-[10px] md:text-xs text-gray-400">
+          <div className="text-[11px] md:text-xs text-purple-200 font-medium">
             {language === 'en' ? 'Main Features' : 'Fitur Utama'}
           </div>
         </div>
@@ -90,10 +90,10 @@ const ProjectStats = ({ project, language }) => {
 };
 
 const handleGithubClick = (githubLink, language) => {
-  if (githubLink === "Private" || !githubLink) {
+  if (githubLink === "Private" || githubLink === "Privat" || !githubLink) {
     Swal.fire({
       icon: "info",
-      title: language === 'en' ? "Source Code Private" : "Source Code Privat",
+      title: language === 'en' ? "Source Code Private" : "Kode Sumber Bersifat Privat",
       text: language === 'en' ? "Sorry, the source code for this project is private." : "Maaf, kode sumber untuk proyek ini bersifat privat.",
       confirmButtonText: language === 'en' ? "Understand" : "Mengerti",
       confirmButtonColor: "#3085d6",
@@ -102,6 +102,7 @@ const handleGithubClick = (githubLink, language) => {
     });
     return false;
   }
+  window.open(githubLink, "_blank", "noopener,noreferrer");
   return true;
 };
 
@@ -189,15 +190,15 @@ const ProjectDetails = () => {
             <div className="flex items-center space-x-2 md:space-x-4 mb-8 md:mb-12 animate-fadeIn">
               <button
                 onClick={() => navigate(-1)}
-                className="group inline-flex items-center space-x-1.5 md:space-x-2 px-3 md:px-5 py-2 md:py-2.5 bg-white/5 backdrop-blur-xl rounded-xl text-white/90 hover:bg-white/10 transition-all duration-300 border border-white/10 hover:border-white/20 text-sm md:text-base"
+                className="group inline-flex items-center space-x-1.5 md:space-x-2 px-3 md:px-5 py-2 md:py-2.5 bg-white/10 backdrop-blur-xl rounded-xl text-white hover:bg-white/15 transition-all duration-300 border border-white/20 hover:border-indigo-400 text-sm md:text-base font-semibold shadow-md"
               >
                 <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
                 <span>{language === 'en' ? 'Back' : 'Kembali'}</span>
               </button>
-              <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base text-white/50">
+              <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base text-indigo-200">
                 <span>{language === 'en' ? 'Projects' : 'Proyek'}</span>
-                <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
-                <span className="text-white/90 truncate">{project.title}</span>
+                <ChevronRight className="w-3 h-3 md:w-4 md:h-4 text-indigo-400" />
+                <span className="text-white font-semibold truncate">{project.title}</span>
               </div>
             </div>
 
@@ -214,36 +215,73 @@ const ProjectDetails = () => {
                 </div>
 
                 <div className="prose prose-invert max-w-none">
-                  <p className="text-base md:text-lg text-gray-300/90 leading-relaxed">
+                  <p className="text-base md:text-lg text-gray-100 leading-relaxed font-normal text-justify">
                     {project.description}
                   </p>
                 </div>
 
                 <ProjectStats project={project} language={language} />
 
+                {project.features && project.features.length > 0 && (
+                  <div className="space-y-3 p-5 rounded-xl bg-white/[0.04] border border-white/15 shadow-md">
+                    <h3 className="text-sm font-bold uppercase tracking-wider text-indigo-300">
+                      {language === 'en' ? 'Key Features' : 'Fitur Utama Proyek'}
+                    </h3>
+                    <div className="grid sm:grid-cols-2 gap-2.5">
+                      {project.features.map((feat, idx) => (
+                        <div key={idx} className="flex items-center gap-2 text-sm text-gray-200 font-normal">
+                          <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
+                          <span>{feat}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex flex-wrap gap-3 md:gap-4">
-                  {project.link && (
+                  {project.linkType === 'live' && project.link && (
                     <a
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-medium hover:scale-105 transition-transform duration-300 shadow-lg shadow-blue-500/20"
+                      className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 rounded-xl text-white font-bold hover:scale-105 transition-transform duration-300 shadow-lg shadow-emerald-500/25"
                     >
                       <ExternalLink className="w-5 h-5" />
-                      <span>{language === 'en' ? 'Live Demo' : 'Demo Langsung'}</span>
+                      <span>{language === 'en' ? 'Visit Website' : 'Kunjungi Website'}</span>
                     </a>
                   )}
-                  <button
-                    onClick={() => handleGithubClick(project.github, language)}
-                    className="flex items-center space-x-2 px-6 py-3 bg-white/5 border border-white/10 rounded-xl text-white font-medium hover:bg-white/10 transition-all duration-300"
-                  >
-                    <Github className="w-5 h-5" />
-                    <span>GitHub</span>
-                  </button>
+
+                  {project.linkType === 'github' && project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-[#6366f1] to-[#a855f7] rounded-xl text-white font-bold hover:scale-105 transition-transform duration-300 shadow-lg shadow-indigo-500/25"
+                    >
+                      <Github className="w-5 h-5" />
+                      <span>{language === 'en' ? 'View on GitHub' : 'Buka di GitHub'}</span>
+                    </a>
+                  )}
+
+                  {project.github && project.linkType !== 'github' && (
+                    <button
+                      onClick={() => handleGithubClick(project.github, language)}
+                      className="flex items-center space-x-2 px-6 py-3 bg-white/10 border border-white/20 rounded-xl text-white font-semibold hover:bg-white/15 transition-all duration-300 shadow-sm"
+                    >
+                      <Github className="w-5 h-5" />
+                      <span>GitHub</span>
+                    </button>
+                  )}
+
+                  {!project.link && (
+                    <div className="px-5 py-3 rounded-xl bg-zinc-800 border border-zinc-600 text-zinc-200 text-sm font-semibold">
+                      {language === 'en' ? 'Internal Project (Private)' : 'Proyek Internal (Privat)'}
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-4 md:space-y-6">
-                  <h3 className="text-xl md:text-2xl font-semibold text-white">
+                  <h3 className="text-xl md:text-2xl font-bold text-white tracking-tight">
                     {language === 'en' ? 'Technologies Used' : 'Teknologi yang Digunakan'}
                   </h3>
                   <div className="flex flex-wrap gap-2 md:gap-3">

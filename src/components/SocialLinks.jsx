@@ -28,7 +28,7 @@ const SocialLinks = () => {
     {
       name: "LinkedIn",
       displayName: language === 'en' ? "Let's Connect" : "Mari Terhubung",
-      subText: "on LinkedIn",
+      subText: language === 'en' ? "Professional Profile" : "Profil Profesional",
       icon: Linkedin,
       url: data.contact.linkedin,
       color: "#0A66C2",
@@ -37,7 +37,7 @@ const SocialLinks = () => {
     },
     {
       name: "GitHub",
-      displayName: "Github",
+      displayName: "GitHub",
       subText: "@daffafauzi",
       icon: Github,
       url: data.contact.github,
@@ -46,7 +46,7 @@ const SocialLinks = () => {
     },
     {
       name: "Email",
-      displayName: language === 'en' ? "Email Me" : "Email Saya",
+      displayName: language === 'en' ? "Email Me" : "Kirim Email",
       subText: data.contact.email,
       icon: Mail,
       url: `mailto:${data.contact.email}`,
@@ -55,7 +55,7 @@ const SocialLinks = () => {
     },
     {
       name: "WhatsApp",
-      displayName: language === 'en' ? "WhatsApp Me" : "WhatsApp Saya",
+      displayName: language === 'en' ? "WhatsApp Me" : "Hubungi WhatsApp",
       subText: data.contact.phone,
       icon: Phone,
       url: whatsappUrl || telUrl,
@@ -66,13 +66,13 @@ const SocialLinks = () => {
 
   useEffect(() => {
     AOS.init({
-      once: false,
-      duration: 1000,
+      once: true,
+      duration: 800,
     });
   }, []);
 
   return (
-    <div className="w-full space-y-4">
+    <div className="w-full space-y-3.5">
       {socialLinks.map((link, index) => {
         const isExternal = /^https?:\/\//.test(link.url);
         return (
@@ -81,20 +81,24 @@ const SocialLinks = () => {
             href={link.url}
             target={isExternal ? "_blank" : undefined}
             rel={isExternal ? "noopener noreferrer" : undefined}
-            className={`group relative flex items-center justify-between p-4 rounded-2xl bg-white/5 border border-white/10 transition-all duration-300 hover:scale-[1.02] hover:bg-white/10 hover:border-white/20`}
+            className="group relative flex items-center justify-between p-4 rounded-xl bg-white/[0.06] border border-white/15 transition-all duration-300 hover:scale-[1.02] hover:bg-white/[0.1] hover:border-indigo-400/50 shadow-md"
             data-aos="fade-up"
-            data-aos-delay={index * 100}
+            data-aos-delay={index * 80}
           >
-            <div className="flex items-center space-x-4">
-              <div className={`p-3 rounded-xl bg-gradient-to-br ${link.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}>
-                <link.icon className="w-6 h-6 text-white" />
+            <div className="flex items-center space-x-3.5">
+              <div className={`p-2.5 rounded-xl bg-gradient-to-br ${link.gradient} opacity-90 group-hover:opacity-100 transition-opacity shadow-sm`}>
+                <link.icon className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h3 className="text-white font-semibold">{link.displayName}</h3>
-                <p className="text-gray-400 text-sm">{link.subText}</p>
+                <h3 className="text-white font-semibold text-sm sm:text-base group-hover:text-indigo-200 transition-colors">
+                  {link.displayName}
+                </h3>
+                <p className="text-gray-200 text-xs sm:text-sm font-normal">
+                  {link.subText}
+                </p>
               </div>
             </div>
-            <ExternalLink className="w-5 h-5 text-gray-500 group-hover:text-white transition-colors" />
+            <ExternalLink className="w-4 h-4 text-indigo-300 group-hover:text-white transition-colors" />
           </a>
         );
       })}

@@ -31,7 +31,7 @@ const MainTitle = memo(({ name }) => (
 ));
 
 const TechStack = memo(({ tech }) => (
-  <span className="px-3 py-1.5 hidden sm:inline-block rounded-full bg-white/[0.04] border border-white/[0.07] text-xs text-gray-500 tracking-wide">
+  <span className="px-3.5 py-1.5 hidden sm:inline-block rounded-full bg-white/[0.08] border border-white/15 text-xs text-indigo-200 font-medium tracking-wide shadow-sm">
     {tech}
   </span>
 ));
@@ -41,10 +41,10 @@ const CTAButton = memo(({ href, text, icon: Icon, variant = 'ghost', isDownload 
     <button
       className={
         variant === 'solid'
-          ? "flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-sm font-medium transition-all duration-300 hover:opacity-90 hover:shadow-lg hover:shadow-indigo-500/20 active:scale-[0.98]"
+          ? "flex items-center gap-2 px-6 py-2.5 rounded-lg bg-gradient-to-r from-[#6366f1] to-[#a855f7] text-white text-sm font-semibold transition-all duration-300 hover:opacity-95 hover:shadow-lg hover:shadow-indigo-500/25 active:scale-[0.98]"
           : variant === 'text'
-          ? "flex items-center gap-2 text-gray-500 text-sm font-medium transition-colors duration-200 hover:text-gray-200 group"
-          : "flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-gray-400 text-sm font-medium transition-all duration-200 hover:border-white/20 hover:text-gray-100 hover:bg-white/[0.04] active:scale-[0.98]"
+          ? "flex items-center gap-2 px-4 py-2.5 rounded-lg text-indigo-300 hover:text-white text-sm font-medium transition-colors duration-200 hover:bg-white/[0.05] group"
+          : "flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/20 text-gray-200 text-sm font-medium transition-all duration-200 hover:border-indigo-400 hover:text-white hover:bg-white/[0.08] active:scale-[0.98]"
       }
     >
       <span>{text}</span>
@@ -65,7 +65,7 @@ const SocialLink = memo(({ icon: Icon, link, label }) => (
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="p-2.5 rounded-lg text-gray-600 hover:text-gray-200 border border-white/[0.06] hover:border-white/15 hover:bg-white/[0.04] transition-all duration-200"
+    className="p-2.5 rounded-lg text-gray-300 hover:text-white border border-white/15 hover:border-indigo-400 bg-white/[0.05] hover:bg-white/10 transition-all duration-200 shadow-sm"
   >
     <Icon className="w-5 h-5" />
   </a>
@@ -165,7 +165,7 @@ const Home = () => {
 
               {/* Tagline */}
               <p
-                className="text-base md:text-lg text-gray-500 max-w-xl leading-relaxed font-light"
+                className="text-base md:text-lg text-gray-200 max-w-xl leading-relaxed font-normal"
                 data-aos="fade-up"
                 data-aos-delay="250"
               >
@@ -174,7 +174,7 @@ const Home = () => {
 
               {/* Tech Stack */}
               <div className="flex flex-wrap gap-2" data-aos="fade-up" data-aos-delay="300">
-                {data.skills.frontend.slice(0, 5).map((tech, i) => (
+                {(data.skills?.frontend || data.skills?.hardSkills || []).slice(0, 5).map((tech, i) => (
                   <TechStack key={i} tech={tech} />
                 ))}
               </div>

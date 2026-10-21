@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Github, Globe, User } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import { useLanguage } from '../context/LanguageContext';
 
 const TypewriterEffect = ({ text }) => {
   const [displayText, setDisplayText] = useState('');
   
   useEffect(() => {
     if (!text) return;
+    setDisplayText('');
     let index = 0;
     const timer = setInterval(() => {
       if (index <= text.length) {
@@ -17,7 +17,7 @@ const TypewriterEffect = ({ text }) => {
       } else {
         clearInterval(timer);
       }
-    }, 100);
+    }, 90);
     
     return () => clearInterval(timer);
   }, [text]);
@@ -39,18 +39,20 @@ const BackgroundEffect = () => (
 
 const IconButton = ({ Icon }) => (
   <div className="relative group hover:scale-110 transition-transform duration-300">
-    <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-30 group-hover:opacity-75 transition duration-300" />
-    <div className="relative p-2 sm:p-3 bg-black/50 backdrop-blur-sm rounded-full border border-white/10">
+    <div className="absolute -inset-2 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full blur opacity-40 group-hover:opacity-80 transition duration-300" />
+    <div className="relative p-2 sm:p-3 bg-black/60 backdrop-blur-md rounded-full border border-white/20">
       <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
     </div>
   </div>
 );
 
 const WelcomeScreen = ({ onLoadingComplete }) => {
+  const { language } = useLanguage();
+
   useEffect(() => {
     const timer = setTimeout(() => {
       onLoadingComplete?.();
-    }, 4000); // Increased time to ensure animations finish
+    }, 1800);
     
     return () => clearTimeout(timer);
   }, [onLoadingComplete]);
@@ -94,7 +96,8 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
 
   return (
     <motion.div
-      className="fixed inset-0 bg-[#030014] z-[9999]"
+      className="fixed inset-0 bg-[#030014] z-[9999] cursor-pointer"
+      onClick={() => onLoadingComplete?.()}
       initial="initial"
       animate="animate"
       exit="exit"
@@ -122,12 +125,12 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
             variants={childVariants}
           >
             <h1 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter">
-              <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                <TypewriterEffect text="Welcome to My Portfolio" />
+              <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
+                <TypewriterEffect text={language === 'en' ? "Welcome to My Portfolio" : "Selamat Datang di Portofolio Saya"} />
               </span>
             </h1>
-            <p className="text-gray-400 text-sm md:text-base tracking-widest uppercase">
-              Frontend Developer Portfolio
+            <p className="text-gray-200 text-sm md:text-base tracking-widest uppercase font-semibold">
+              {language === 'en' ? "Frontend Developer Portfolio" : "Portofolio Pengembang Frontend"}
             </p>
           </motion.div>
 
@@ -137,10 +140,10 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
             variants={childVariants}
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3 rounded-full relative group">
-              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-purple-600/20 rounded-full blur-md" />
-              <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
-                <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/30 to-purple-600/30 rounded-full blur-md" />
+              <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl font-semibold">
+                <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400" />
+                <span className="bg-gradient-to-r from-indigo-300 to-purple-300 bg-clip-text text-transparent">
                   <TypewriterEffect text="daffafauzi.com" />
                 </span>
               </div>

@@ -26,5 +26,21 @@ dist/
 *.sln
 *.sw?
 *.env
+
 # Added by code-review-graph
 .code-review-graph/
+
+# Agent / Tooling local configs
+.gemini/
+.claude/
+.kiro/
+.qoder/
+.cursorrules
+.windsurfrules
+.opencode.json
+.mcp.json
+template-*.html
+AGENTS.md
+GEMINI.md
+QODER.md
+.github/

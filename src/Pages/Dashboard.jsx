@@ -34,19 +34,19 @@ export default function Dashboard() {
         </div>
         <div>
           <p className="text-sm font-semibold text-white">Dashboard</p>
-          <p className="text-xs text-gray-500">Admin Panel</p>
+          <p className="text-xs text-indigo-300 font-medium">Admin Panel</p>
         </div>
       </div>
 
       {/* Badge */}
-      <div className="shrink-0 px-3 py-2 rounded-full bg-indigo-500/10 border border-indigo-500/20 flex items-center gap-2">
+      <div className="shrink-0 px-3 py-2 rounded-full bg-indigo-500/15 border border-indigo-500/30 flex items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse" />
-        <span className="text-indigo-300 text-xs font-medium">Portfolio Manager</span>
+        <span className="text-indigo-200 text-xs font-semibold">Portfolio Manager</span>
       </div>
 
       {/* Nav */}
       <nav className="flex flex-col gap-1 flex-1 min-h-0">
-        <p className="text-[10px] text-gray-600 uppercase tracking-widest px-3 mb-2 shrink-0">Menu</p>
+        <p className="text-[10px] text-indigo-200 uppercase tracking-widest px-3 mb-2 shrink-0 font-bold">Menu</p>
         {NAV_ITEMS.map(({ to, label, icon: Icon }) => {
           const active = location.pathname.includes(to)
           return (
@@ -56,8 +56,8 @@ export default function Dashboard() {
               onClick={() => setSidebarOpen(false)}
               className={`flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 text-sm font-medium shrink-0 ${
                 active
-                  ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/15 border border-indigo-500/30 text-white'
-                  : 'text-gray-400 hover:text-gray-200 hover:bg-white/5 border border-transparent'
+                  ? 'bg-gradient-to-r from-indigo-500/20 to-purple-500/15 border border-indigo-500/30 text-white font-semibold'
+                  : 'text-gray-200 hover:text-white hover:bg-white/10 border border-transparent'
               }`}
             >
               <Icon className={`w-4 h-4 shrink-0 ${active ? 'text-indigo-400' : ''}`} />
@@ -71,7 +71,7 @@ export default function Dashboard() {
       {/* Logout */}
       <button
         onClick={handleLogout}
-        className="shrink-0 flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-500 hover:text-red-400 hover:bg-red-500/5 border border-transparent hover:border-red-500/15 transition-all duration-200 text-sm"
+        className="shrink-0 flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-300 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all duration-200 text-sm font-medium"
       >
         <LogOut className="w-4 h-4 shrink-0" />
         Sign Out
@@ -80,7 +80,6 @@ export default function Dashboard() {
   )
 
   return (
-    // Kunci: TIDAK pakai overflow-hidden di sini supaya scrollbar main bisa diklik
     <div className="flex text-white" style={{ height: '100dvh' }}>
       {/* Mobile overlay */}
       {sidebarOpen && (
@@ -90,9 +89,9 @@ export default function Dashboard() {
         />
       )}
 
-      {/* Sidebar - desktop: sticky, tinggi 100dvh */}
+      {/* Sidebar - desktop */}
       <aside
-        className="hidden lg:flex w-60 shrink-0 flex-col border-r border-white/8 bg-white/3 backdrop-blur-xl"
+        className="hidden lg:flex w-60 shrink-0 flex-col border-r border-white/10 bg-[#0B0B1E] backdrop-blur-xl"
         style={{ height: '100dvh', position: 'sticky', top: 0 }}
       >
         <SidebarContent />
@@ -100,7 +99,7 @@ export default function Dashboard() {
 
       {/* Sidebar - mobile drawer */}
       <aside
-        className={`fixed inset-y-0 left-0 z-30 w-60 flex flex-col border-r border-white/8 bg-[#0a0a1a] backdrop-blur-xl transition-transform duration-300 lg:hidden ${
+        className={`fixed inset-y-0 left-0 z-30 w-60 flex flex-col border-r border-white/10 bg-[#0a0a1a] backdrop-blur-xl transition-transform duration-300 lg:hidden ${
           sidebarOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
@@ -108,19 +107,19 @@ export default function Dashboard() {
       </aside>
 
       {/* Main area */}
-      <div className="flex-1 flex flex-col min-w-0 min-h-0">
+      <div className="flex-1 flex flex-col min-w-0 min-h-0 bg-[#030014]">
         {/* Mobile topbar */}
-        <div className="lg:hidden flex items-center gap-3 px-4 py-3 border-b border-white/8 bg-white/3 backdrop-blur-xl shrink-0">
+        <div className="lg:hidden flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/5 backdrop-blur-xl shrink-0">
           <button
             onClick={() => setSidebarOpen(true)}
-            className="p-2 rounded-lg border border-white/10 text-gray-400 hover:text-white transition-colors"
+            className="p-2 rounded-lg border border-white/15 text-gray-200 hover:text-white transition-colors"
           >
             <Menu className="w-4 h-4" />
           </button>
-          <span className="text-sm font-medium text-white">Dashboard</span>
+          <span className="text-sm font-semibold text-white">Dashboard</span>
         </div>
 
-        {/* Hanya main yang overflow-y-auto — scrollbar bisa diklik normal */}
+        {/* Hanya main yang overflow-y-auto */}
         <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
           <Routes>
             <Route index element={<Navigate to="projects" replace />} />
