@@ -84,7 +84,7 @@ const AboutPage = () => {
     const projectsCount = data.projects.length;
     const storedCertificates = JSON.parse(localStorage.getItem("certificates") || "[]");
 
-    const experienceText = language === 'en' ? '1.5+ Years' : '1.5+ Tahun';
+    const experienceText = language === 'en' ? '1.9+ Years' : '1.9+ Tahun';
 
     return {
       totalProjects: projectsCount,

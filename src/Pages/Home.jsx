@@ -85,7 +85,8 @@ const Home = () => {
 
   const WORDS = useMemo(() => [
     data.role,
-    language === 'en' ? "Tech Enthusiast" : "Penggemar Teknologi"
+    language === 'en' ? "Laravel & React Specialist" : "Spesialis Laravel & React",
+    language === 'en' ? "Enterprise B2B Core Developer" : "Pengembang B2B Core Enterprise"
   ], [data.role, language]);
 
   useEffect(() => {
@@ -174,7 +175,7 @@ const Home = () => {
 
               {/* Tech Stack */}
               <div className="flex flex-wrap gap-2" data-aos="fade-up" data-aos-delay="300">
-                {(data.skills?.frontend || data.skills?.hardSkills || []).slice(0, 5).map((tech, i) => (
+                {(data.skills?.hardSkills || []).slice(0, 6).map((tech, i) => (
                   <TechStack key={i} tech={tech} />
                 ))}
               </div>

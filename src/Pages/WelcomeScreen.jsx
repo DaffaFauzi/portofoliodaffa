@@ -130,7 +130,7 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
               </span>
             </h1>
             <p className="text-gray-200 text-sm md:text-base tracking-widest uppercase font-semibold">
-              {language === 'en' ? "Frontend Developer Portfolio" : "Portofolio Pengembang Frontend"}
+              {language === 'en' ? "Fullstack Web Developer Portfolio" : "Portofolio Fullstack Web Developer"}
             </p>
           </motion.div>
 

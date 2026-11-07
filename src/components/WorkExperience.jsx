@@ -81,22 +81,22 @@ const WorkExperience = () => {
                   {exp?.type || (language === 'en' ? "Full-time" : "Penuh Waktu")}
                 </span>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                  {exp?.role || "FrontEnd Developer"}
+                  {exp?.role || "Fullstack Web Developer"}
                 </h3>
                 <div className="flex items-center gap-2 text-sm text-indigo-300 font-semibold">
                   <Building2 className="w-4 h-4 text-indigo-400" />
-                  <span>{exp?.company || "PT Ardana Perkasa Group"}</span>
+                  <span>{exp?.company || "PT Ardana Perkasa Group (APG)"}</span>
                 </div>
               </div>
 
               <div className="flex flex-col items-start sm:items-end gap-1.5">
                 <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/15 text-emerald-300 border border-emerald-500/35 shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  {exp?.period || (language === 'en' ? "October 2025 – Present" : "Oktober 2025 – Sekarang")}
+                  {exp?.period || (language === 'en' ? "October 2024 – Present" : "Oktober 2024 – Sekarang")}
                 </span>
                 <span className="text-xs text-gray-300 font-medium flex items-center gap-1">
                   <MapPin className="w-3.5 h-3.5 text-indigo-400" />
-                  {exp?.location || "Indonesia"}
+                  {exp?.location || "Jakarta, Indonesia"}
                 </span>
               </div>
             </div>
@@ -208,6 +208,25 @@ const WorkExperience = () => {
                 ))}
               </div>
             </div>
+
+            {/* Core Architecture Competencies */}
+            {skills?.competencies && (
+              <div className="space-y-2 pt-3 border-t border-white/10">
+                <p className="text-xs font-bold uppercase tracking-wider text-emerald-300">
+                  {language === "en" ? "Core Engineering Competencies:" : "Kompetensi Arsitektur & Rekayasa:"}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {skills.competencies.map((comp, idx) => (
+                    <span
+                      key={idx}
+                      className="px-2.5 py-1 text-xs font-medium rounded-lg bg-emerald-500/15 text-emerald-200 border border-emerald-500/25"
+                    >
+                      {comp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Soft skills */}
             <div className="space-y-2 pt-3 border-t border-white/10">

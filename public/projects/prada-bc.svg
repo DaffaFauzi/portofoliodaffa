@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGradPrada" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1026" />
+      <stop offset="50%" stop-color="#0e1e3e" />
+      <stop offset="100%" stop-color="#060914" />
+    </linearGradient>
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="glowPrada" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="30" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#bgGradPrada)" />
+  <circle cx="700" cy="80" r="140" fill="#10b981" opacity="0.12" filter="url(#glowPrada)" />
+  <circle cx="100" cy="380" r="160" fill="#6366f1" opacity="0.15" filter="url(#glowPrada)" />
+
+  <!-- Grid lines -->
+  <g stroke="#ffffff" stroke-opacity="0.04" stroke-width="1">
+    <line x1="0" y1="90" x2="800" y2="90" />
+    <line x1="0" y1="180" x2="800" y2="180" />
+    <line x1="0" y1="270" x2="800" y2="270" />
+    <line x1="0" y1="360" x2="800" y2="360" />
+    <line x1="160" y1="0" x2="160" y2="450" />
+    <line x1="320" y1="0" x2="320" y2="450" />
+    <line x1="480" y1="0" x2="480" y2="450" />
+    <line x1="640" y1="0" x2="640" y2="450" />
+  </g>
+
+  <!-- Main System UI Card -->
+  <g transform="translate(100, 40)">
+    <rect width="600" height="370" rx="16" fill="#0c172e" stroke="#10b981" stroke-opacity="0.3" stroke-width="1.5" />
+
+    <!-- Top Navigation Bar -->
+    <rect width="600" height="52" rx="16" fill="#132446" />
+    <rect y="36" width="600" height="16" fill="#132446" />
+    <circle cx="32" cy="26" r="5" fill="#ef4444" />
+    <circle cx="50" cy="26" r="5" fill="#f59e0b" />
+    <circle cx="68" cy="26" r="5" fill="#10b981" />
+    
+    <!-- Title and Badge -->
+    <text x="300" y="31" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="13" font-weight="700" text-anchor="middle">🏸 PRADA BADMINTON CLUB — CORE &amp; REPORT SYSTEM</text>
+    <rect x="495" y="16" width="80" height="20" rx="10" fill="#10b981" fill-opacity="0.2" stroke="#10b981" stroke-opacity="0.4" />
+    <text x="535" y="30" fill="#a7f3d0" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">LARAVEL 12/13</text>
+
+    <!-- Sub Header Stats -->
+    <g transform="translate(30, 72)">
+      <!-- Stat 1 -->
+      <rect width="165" height="65" rx="10" fill="#162c54" stroke="#ffffff" stroke-opacity="0.08" />
+      <text x="14" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">TOTAL ATLET AKTIF</text>
+      <text x="14" y="50" fill="#ffffff" font-family="system-ui, sans-serif" font-size="20" font-weight="800">148 Atlet</text>
+      <circle cx="140" cy="33" r="12" fill="#10b981" fill-opacity="0.2" />
+      <text x="140" y="37" fill="#34d399" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">✓</text>
+
+      <!-- Stat 2 -->
+      <rect x="187" width="165" height="65" rx="10" fill="#162c54" stroke="#ffffff" stroke-opacity="0.08" />
+      <text x="201" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">AUTO-BILLING (SPP)</text>
+      <text x="201" y="50" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="20" font-weight="800">100% Sync</text>
+      <circle cx="327" cy="33" r="12" fill="#0284c7" fill-opacity="0.2" />
+      <text x="327" y="37" fill="#38bdf8" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">⚡</text>
+
+      <!-- Stat 3 -->
+      <rect x="375" width="165" height="65" rx="10" fill="#162c54" stroke="#ffffff" stroke-opacity="0.08" />
+      <text x="389" y="24" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="10" font-weight="600">SCHEDULE COMMAND</text>
+      <text x="389" y="50" fill="#a78bfa" font-family="system-ui, sans-serif" font-size="20" font-weight="800">Daily Cron</text>
+      <circle cx="515" cy="33" r="12" fill="#8b5cf6" fill-opacity="0.2" />
+      <text x="515" y="37" fill="#c084fc" font-family="system-ui, sans-serif" font-size="10" font-weight="700" text-anchor="middle">⚙</text>
+    </g>
+
+    <!-- Schedule & Match Interactive Panel -->
+    <g transform="translate(30, 154)">
+      <!-- Left: Calendar & Training Schedule -->
+      <rect width="320" height="190" rx="12" fill="#112242" stroke="#ffffff" stroke-opacity="0.08" />
+      <text x="16" y="26" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12" font-weight="700">📅 FullCalendar Schedule &amp; Sesi Latihan</text>
+      
+      <!-- Event 1 -->
+      <rect x="16" y="40" width="288" height="38" rx="8" fill="#1c3562" />
+      <circle cx="32" cy="59" r="6" fill="#10b981" />
+      <text x="48" y="55" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Privat Atlet U-17 (Drill Smash &amp; Footwork)</text>
+      <text x="48" y="69" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">08:00 - 10:30 • Court 1 • Coach Pratama</text>
+
+      <!-- Event 2 -->
+      <rect x="16" y="86" width="288" height="38" rx="8" fill="#1c3562" />
+      <circle cx="32" cy="105" r="6" fill="#38bdf8" />
+      <text x="48" y="101" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Latihan Reguler Mingguan Kelas Remaja</text>
+      <text x="48" y="115" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">14:00 - 17:00 • Court 2 &amp; 3 • 24 Peserta</text>
+
+      <!-- Event 3 -->
+      <rect x="16" y="132" width="288" height="38" rx="8" fill="#1c3562" />
+      <circle cx="32" cy="151" r="6" fill="#f59e0b" />
+      <text x="48" y="147" fill="#f1f5f9" font-family="system-ui, sans-serif" font-size="11" font-weight="600">Turnamen Internal &amp; Cetak Sertifikat PDF</text>
+      <text x="48" y="161" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">19:00 - Selesai • Auto-generate DomPDF</text>
+
+      <!-- Right: Performance & Report Card -->
+      <rect x="335" width="205" height="190" rx="12" fill="#112242" stroke="#ffffff" stroke-opacity="0.08" />
+      <text x="350" y="26" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="12" font-weight="700">📄 DomPDF Report Engine</text>
+      
+      <rect x="350" y="42" width="175" height="75" rx="8" fill="#162a50" stroke="#38bdf8" stroke-opacity="0.2" />
+      <text x="362" y="60" fill="#93c5fd" font-family="system-ui, sans-serif" font-size="10" font-weight="700">Laporan Fisik Atlet</text>
+      <text x="362" y="74" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">VO2 Max: 58.4 ml/kg</text>
+      <text x="362" y="88" fill="#94a3b8" font-family="system-ui, sans-serif" font-size="9">Agility Test: Rank A (Optimal)</text>
+      <text x="362" y="102" fill="#34d399" font-family="system-ui, sans-serif" font-size="9" font-weight="600">✓ Sertifikat Siap Cetak</text>
+
+      <!-- Tech Stack pills inside mockup -->
+      <g transform="translate(350, 130)">
+        <rect width="80" height="20" rx="4" fill="#0284c7" fill-opacity="0.25" />
+        <text x="40" y="14" fill="#7dd3fc" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Inertia React 19</text>
+        <rect x="88" width="87" height="20" rx="4" fill="#059669" fill-opacity="0.25" />
+        <text x="131" y="14" fill="#6ee7b7" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Tailwind v4</text>
+        <rect y="26" width="175" height="20" rx="4" fill="#4f46e5" fill-opacity="0.25" />
+        <text x="87" y="40" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="9" font-weight="600" text-anchor="middle">Artisan Scheduled Worker</text>
+      </g>
+    </g>
+  </g>
+</svg>
